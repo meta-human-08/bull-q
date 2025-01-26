@@ -14,6 +14,7 @@ interface AddJobQueryString {
   email: string;
   accessToken: string;
   repoName: string;
+  text: string;
 }
 
 const run = async () => {
@@ -47,6 +48,7 @@ const run = async () => {
             email: { type: 'string' },
             accessToken: { type: 'string' },
             repoName: { type: 'string' },
+            text: { type: 'string' },
           },
         },
       },
@@ -57,7 +59,8 @@ const run = async () => {
         req.query.email == null ||
         req.query.name == null ||
         req.query.accessToken == null ||
-        req.query.repoName == null
+        req.query.repoName == null||
+        req.query.text == null
       ) {
         reply
           .status(400)
@@ -72,6 +75,7 @@ const run = async () => {
         name,
         accessToken,
         repoName,
+        text
       });
 
       reply.send({
