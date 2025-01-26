@@ -25,13 +25,16 @@ export const setupQueueProcessor = async (queueName: string) => {
     async (job) => {
       try {
         const { name, email, accessToken, repoName } = job.data;
-        await fetch('https://git-name.onrender.com/generate-repo', {
+        const response = await fetch('https://git-name.onrender.com/generate-repo', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ name, accessToken, email, repoName }),
         });
+        if(!response.ok) {
+          throw new Error(`Failed to create repo for ${email}`);
+        }
         return { jobId: `Job (${job.id}) completed successfully` };
       } catch (error) {
         console.log(error);
