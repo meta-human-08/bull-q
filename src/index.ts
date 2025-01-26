@@ -33,7 +33,7 @@ const run = async () => {
   });
 
   // name, email, accessToken, repoName, text, startDate
-
+  // @ts-ignore
   server.get(
     '/add-job',
     {
