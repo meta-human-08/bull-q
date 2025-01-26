@@ -8,7 +8,7 @@ export const env = envsafe({
   PORT: port({
     devDefault: 3000,
   }),
-  RAILWAY_STATIC_URL: str({
-    devDefault: 'http://localhost:3000',
-  }),
+  // RAILWAY_STATIC_URL: str({
+  //   devDefault: 'http://localhost:3000',
+  // }),
 });

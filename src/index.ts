@@ -82,7 +82,7 @@ const run = async () => {
 
   await server.listen({ port: env.PORT, host: '0.0.0.0' });
   console.log(
-    `To populate the queue and demo the UI, run: curl https://${env.RAILWAY_STATIC_URL}/add-job?id=1&email=hello%40world.com`
+    `To populate the queue and demo the UI, run: curl https:///add-job?id=1&email=hello%40world.com`
   );
 };
 
