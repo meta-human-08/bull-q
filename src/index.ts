@@ -69,7 +69,7 @@ const run = async () => {
         return;
       }
 
-      const { email, name, accessToken, repoName } = req.query;
+      const { email, name, accessToken, repoName, text } = req.query;
       welcomeEmailQueue.add(`WelcomeEmail-${email}`, {
         email,
         name,
