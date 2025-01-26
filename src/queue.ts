@@ -5,6 +5,7 @@ import { ConnectionOptions, Queue, QueueScheduler, Worker } from 'bullmq';
 import { env } from './env';
 
 const connection: ConnectionOptions = {
+  family: 0,
   host: env.REDISHOST,
   port: env.REDISPORT,
   username: env.REDISUSER,
