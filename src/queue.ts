@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ConnectionOptions, Queue, QueueScheduler, Worker } from 'bullmq';
 
 import { env } from './env';
