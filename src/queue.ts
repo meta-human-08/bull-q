@@ -33,7 +33,19 @@ export const setupQueueProcessor = async (queueName: string) => {
           body: JSON.stringify({ name, accessToken, email, repoName }),
         });
         if(!response.ok) {
-          throw new Error(`Failed to create repo for ${email}`);
+          const errorBody = await response.text();
+          console.log(errorBody)
+          switch (response.status) {
+            case 400:
+              throw new Error(`Bad request: ${errorBody}`);
+            case 401:
+              throw new Error(`Unauthorized: ${errorBody}`);
+            case 500:
+              throw new Error(`Server error: ${errorBody}`);
+            default:
+              throw new Error(`Failed to create repo for ${email}: ${errorBody}`);
+          }
+          // throw new Error(`Failed to create repo for ${email}`);
         }
         return { jobId: `Job (${job.id}) completed successfully` };
       } catch (error) {
