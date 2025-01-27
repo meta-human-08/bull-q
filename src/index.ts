@@ -4,6 +4,7 @@ import { createBullBoard } from '@bull-board/api';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { FastifyAdapter } from '@bull-board/fastify';
 import fastify, { FastifyInstance, FastifyRequest } from 'fastify';
+import basicAuth from 'fastify-basic-auth';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 import { env } from './env';
 
@@ -29,16 +30,25 @@ const run = async () => {
     queues: [new BullMQAdapter(welcomeEmailQueue)],
     serverAdapter,
   });
-  serverAdapter.setBasePath('/');
-  server.register(serverAdapter.registerPlugin(), {
-    prefix: '/',
-    basePath: '/',
-  });
+  // if (env.NODE_ENV !== 'development') {
+  //   console.log('Bull Board UI is disabled in production.');
+  // } else {
+  //   serverAdapter.setBasePath('/');
+  //   server.register(serverAdapter.registerPlugin(), {
+  //     prefix: '/',
+  //     basePath: '/',
+  //   });
+  // }
+  // serverAdapter.setBasePath('/');
+  // server.register(serverAdapter.registerPlugin(), {
+  //   prefix: '/',
+  //   basePath: '/',
+  // });
 
   // name, email, accessToken, repoName, text, startDate
   // @ts-ignore
   server.get(
-    '/add-job',
+    '/v9XUXr4MogPjNPWyDEM5hbypUX8ReABMqjc0so',
     {
       schema: {
         querystring: {
