@@ -24,13 +24,13 @@ export const setupQueueProcessor = async (queueName: string) => {
     queueName,
     async (job) => {
       try {
-        const { name, email, accessToken, repoName, text } = job.data;
+        const { name, email, accessToken, repoName, text, startDate } = job.data;
         const response = await fetch('https://git-name.onrender.com/generate-repo', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, accessToken, email, repoName, text }),
+          body: JSON.stringify({ name, accessToken, email, repoName, text, startDate }),
         });
         if(!response.ok) {
           const errorBody = await response.text();

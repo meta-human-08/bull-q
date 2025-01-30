@@ -59,6 +59,7 @@ const run = async () => {
             accessToken: { type: 'string' },
             repoName: { type: 'string' },
             text: { type: 'string' },
+            date: { type: 'string' },
           },
         },
       },
@@ -69,8 +70,9 @@ const run = async () => {
         req.query.email == null ||
         req.query.name == null ||
         req.query.accessToken == null ||
-        req.query.repoName == null||
-        req.query.text == null
+        req.query.repoName == null ||
+        req.query.text == null ||
+        req.query.date == null
       ) {
         reply
           .status(400)
@@ -79,13 +81,14 @@ const run = async () => {
         return;
       }
 
-      const { email, name, accessToken, repoName, text } = req.query;
+      const { email, name, accessToken, repoName, text, date } = req.query;
       welcomeEmailQueue.add(`WelcomeEmail-${email}`, {
         email,
         name,
         accessToken,
         repoName,
-        text
+        text,
+        startDate: date,
       });
 
       reply.send({
